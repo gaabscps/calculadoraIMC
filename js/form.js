@@ -16,8 +16,16 @@ botaoAdicionar.addEventListener("click", function(event) {
         }
     }
 
+    function validaAltura(alturaPp) {
+        if (alturaPp >= 1 && alturaPp <= 3) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function validaPaciente (paciente) {
-        if (validaPeso(paciente.peso) === false) {
+        if (!validaPeso(paciente.peso) || validaAltura(paciente.altura) === false) {
             return false;
         } else {
             return true;
