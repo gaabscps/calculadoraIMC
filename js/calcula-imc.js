@@ -13,18 +13,18 @@ for(var i = 0; i < pacientes.length; i++) {
 
     var imcPp = paciente.querySelector(".info-imc");
 
-    var pesoValidation = true; 
+    var pesoValidation = validaPeso(peso); 
     var alturaValidation = true;
 
     if(pesoPp <= 0 || pesoPp >= 500) {
-        pesoValidation = false;
+        pesoValidation = true;
     }
 
     if(alturaPp <=0 || alturaPp >= 3.5) {
         alturaValidation = false;
     }
 
-    if(pesoValidation && alturaValidation == true) {
+    if(!pesoValidation && alturaValidation) {
         imcPp.textContent = calculaImc(pesoPp, alturaPp);  
     }else {
         imcPp.textContent = "Dados inválidos";
