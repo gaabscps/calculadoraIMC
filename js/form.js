@@ -8,7 +8,6 @@ botaoAdicionar.addEventListener("click", function(event) {
     var pacienteTr = montaTr(paciente); 
 
     function validaPeso(pesoPp) {
-        console.log(pesoPp);
         if (pesoPp >= 0 && pesoPp <= 500) {
             return true;
         } else {
@@ -17,7 +16,7 @@ botaoAdicionar.addEventListener("click", function(event) {
     }
 
     function validaAltura(alturaPp) {
-        if (alturaPp >= 1 && alturaPp <= 3) {
+        if (alturaPp >= 0 && alturaPp <= 3) {
             return true;
         } else {
             return false;
@@ -25,19 +24,44 @@ botaoAdicionar.addEventListener("click", function(event) {
     }
 
     function validaPaciente (paciente) {
-        if (!validaPeso(paciente.peso) || validaAltura(paciente.altura) === false) {
-            return false;
-        } else {
-            return true;
+        var erros = []
+        if (paciente.nome.length === 0) {
+            erros.push ("O nome não deve ser em branco");
         }
-    }
-
-    if (validaPaciente(paciente) === false) {
-        var textoErro = document.querySelector(".texto-erro");
-        textoErro.textContent = "Paciente inválido";
-        return;
+        if (!validaPeso(paciente.peso)){
+            erros.push("O peso está inválido");
+        }
+        if (paciente.peso.length === 0 ) {
+            erros.push ("O peso não deve zer em branco")
+        }
+        if (!validaAltura(paciente.altura)){
+            erros.push("A altura está inválida");
+        }
+        if (paciente.altura.length === 0 ) {
+            erros.push ("A altura não deve zer em branco");
+        }
+        if (paciente.gordura.length === 0 ) {
+            erros.push ("A % de gordura não deve ser em branco");
+        }
+        return erros;
     }
     
+    function exibeMensagemErro (erros) {
+        var ul = document.querySelector(".texto-erro");
+        ul.innerHTML = "";
+        erros.forEach(function (erro) {
+            var li = document.createElement("li");
+            li.textContent = erro;
+            ul.appendChild(li);   
+        });
+    }
+
+    var erros = validaPaciente(paciente);
+    if (erros.length > 0) {
+        exibeMensagemErro(erros);
+        return;
+    }
+
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
@@ -73,8 +97,8 @@ botaoAdicionar.addEventListener("click", function(event) {
 
         return td;
     }   
-
     form.reset();
+
 });
 
 
