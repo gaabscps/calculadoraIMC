@@ -38,6 +38,10 @@ header .container:before{
 	margin: 0 auto;
 }
 
+.container__form {
+	margin-top: 40px;
+}
+
 section{
 	margin: 2em 0;
 	overflow: hidden;
