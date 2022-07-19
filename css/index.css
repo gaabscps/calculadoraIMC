@@ -141,3 +141,6 @@ button[disabled=disabled], button:disabled {
 	color: white;
 	font-weight: 700;
 }
+.texto-erro {
+	color: red;
+}

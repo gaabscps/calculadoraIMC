@@ -33,7 +33,8 @@ botaoAdicionar.addEventListener("click", function(event) {
     }
 
     if (validaPaciente(paciente) === false) {
-        alert("Paciente Invalido");
+        var textoErro = document.querySelector(".texto-erro");
+        textoErro.textContent = "Paciente inválido";
         return;
     }
     
